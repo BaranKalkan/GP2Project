@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect</title>
+    <link href="{% static 'chat/style.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+    <ul id="Sidenav" class="sidenav">
+        <li>
+            <h1 class="logo">Connect</h1>
+            <h2>DEBUG:: {{user.username}}</h2>
+        </li>
+        <li>
+            <form class="floating-label-group" action="/send_friend_request/" method="post">
+                {% csrf_token %}
+                    <input type="text" id="username" name="username" class="form-control" autocomplete="off" required />
+                    <label class="floating-label">Username</label>
+                    <button class="add-icon" type="submit" value="OK"><span class="material-icons">person_add</span></button>
+            </form>
+        </li>
+        <li>
+            <button class="collapsible">Friendship Requests<span id="request-count" class="notify notify-background">0</span></button>
+            <div class="content">
+                <ul id="friendship-requests" class="user-list">
+                </ul>
+            </div>
+        </li>
+        <li>
+            <button class="collapsible">Online Friends<span id="online-count" class="notify">0</span></button>
+            <div class="content">
+                <ul id="online-friends" class="user-list">
+                </ul>
+            </div>
+        </li>
+        <li>
+            <button class="collapsible">All Friends<span id="all-count" class="notify">0</span></button>
+            <div class="content">
+                <ul id="all-friends" class="user-list">
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <main>
+        <div>
+            <span id="currentRoom"></span>
+        </div>
+        <div class="video-chat-area">
+            <div id="videos">
+                <video id="localVideo" muted autoplay playsinline></video>
+                <video id="remoteVideo" autoplay playsinline></video>
+            </div>
+            <div id="buttons">
+                <button class="mdc-button mdc-button--raised" disabled id="hangupBtn">
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">close</i>
+                    <span class="mdc-button__label">Close</span>
+                </button>
+            </div>
+        </div>
+        <div class="mdc-dialog"
+            id="room-dialog"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="my-dialog-title"
+            aria-describedby="my-dialog-content">
+            <div class="mdc-dialog__container">
+                <div class="mdc-dialog__surface">
+                    <h2 class="mdc-dialog__title" id="my-dialog-title">Join room</h2>
+                    <div class="mdc-dialog__content" id="my-dialog-content">
+                        Enter ID for room to join:
+                        <div class="mdc-text-field">
+                            <input type="text" id="room-id" class="mdc-text-field__input">
+                            <label class="mdc-floating-label" for="my-text-field">Room ID</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                    </div>
+                    <footer class="mdc-dialog__actions">
+                        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+                            <span class="mdc-button__label">Cancel</span>
+                        </button>
+                        <button id="confirmJoinBtn" type="button" class="mdc-button mdc-dialog__button"
+                                data-mdc-dialog-action="yes">
+                            <span class="mdc-button__label">Join</span>
+                        </button>
+                    </footer>
+                </div>
+            </div>
+            <div class="mdc-dialog__scrim"></div>
+        </div>
+        <div id="messages">
+            
+        </div>
+        <form id="message-form">
+            <input type="text" name="message"/>
+        </form>
+    </main>
+
+    <script src="{% static 'chat/javascript/chat.js' %}"></script>
+    <script src="{% static 'chat/javascript/app.js' %}"></script>
+</body>
+</html>
