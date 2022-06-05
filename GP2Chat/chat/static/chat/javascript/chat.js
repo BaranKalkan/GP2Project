@@ -14,8 +14,6 @@ for (i = 0; i < coll.length; i++) {
     });
 }
 
-
-
 let url = `ws://${window.location.host}/ws/socket-server/`
 const chatSocket = new WebSocket(url)
 
@@ -111,6 +109,9 @@ chatSocket.onmessage = function (e) {
 //}); 
 
 $(document).ready(function () {
+    
+    $("#messageInputBox").prop( "disabled", true);
+    
     $.get("/get_friend_requests/", function(data, status){
         data = JSON.parse(data)
         
@@ -139,5 +140,7 @@ $(document).ready(function () {
         e.preventDefault()
         console.log($(this).attr("data-value"))
     });
+
+
   });
 

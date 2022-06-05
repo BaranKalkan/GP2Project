@@ -308,11 +308,26 @@ main {
   font-size: 56px;
 }
 
+#messageInputBox:disabled {
+  background: #cccccc73;
+}
+
 #messages {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 4px;
 }
 
 #message-form {
@@ -332,48 +347,29 @@ main {
   background-color: whitesmoke;
 }
 
-#message {
-  background: white;
-  max-width: 360px;
-  margin: 100px auto 16px;
-  padding: 32px 24px;
-  border-radius: 3px;
-}
-
-#message h2 {
-  color: #ffa100;
-  font-weight: bold;
-  font-size: 16px;
-  margin: 0 0 8px;
-}
-
-#message h1 {
-  font-size: 22px;
-  font-weight: 300;
-  color: rgba(0, 0, 0, 0.6);
-  margin: 0 0 16px;
-}
-
-#message p {
-  line-height: 140%;
-  margin: 16px 0 24px;
-  font-size: 14px;
-}
-
-#message a {
+.message {
   display: block;
-  text-align: center;
-  background: #FFD369;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-  padding: 16px;
-  border-radius: 4px;
+  font-size: small;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: 600;
 }
 
-#message, #message a {
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+.sender {
+  background-color: #d2691e;
+  color: white;
+  border-radius: 0px 16px 16px 16px;
+}
+
+.receiver {
+  background-color: white;
+  color: #222831;
+  border-radius: 16px 16px 0px 16px;
+}
+
+.receiver:hover {
+  background: rgba(0, 0, 0, 0.884);
+  color: #e9e9e9;
 }
 
 #load {
