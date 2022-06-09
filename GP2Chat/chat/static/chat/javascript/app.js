@@ -34,6 +34,7 @@ let roomId = null;
 function init() {
   document.querySelector('#hangupBtn').addEventListener('click', hangUp);
   roomDialog = new mdc.dialog.MDCDialog(document.querySelector('#room-dialog'));
+
 }
 
 async function createRoom() {
@@ -201,8 +202,10 @@ async function joinRoomById(roomId) {
 function setChannelEvents(channel, channelNameForConsoleOutput) {
  
   channel.onmessage = function (event) {
-      console.log(channelNameForConsoleOutput, 'received a message:', event.data);
-      $('#messages').append(`<p class="message sender">${event.data}</p>`);
+      let message = event.data;
+      console.log(channelNameForConsoleOutput, 'received a message:', message);
+      $('#messages').append(`<p class="message sender">${message}<span class="message-date">${Date.now()}</span></p>`);
+      
   };
 
   channel.onopen = function () {
@@ -215,7 +218,7 @@ function setChannelEvents(channel, channelNameForConsoleOutput) {
         if (event.keyCode == 13) {
           let message = $("#messageInputBox").val();
           messageChannel.send(message);
-          $('#messages').append(`<p class="message receiver">${message}</p>`);
+          $('#messages').append(`<p class="message receiver">${message}<span class="message-date">${Date.now()}</span></p>`);
           $("#messageInputBox").val("");
         }
       });
