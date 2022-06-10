@@ -19,6 +19,7 @@ body {
 }
   
 main {
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     margin-left: 300px;
@@ -227,6 +228,7 @@ main {
 }
 
 #messages {
+    overflow: auto;
     flex: 1;
     padding: 12px;
     display: flex;
@@ -246,7 +248,6 @@ main {
         background-color: whitesmoke;
     }
 }
-
 
 .message {
     display: flex;
@@ -318,7 +319,6 @@ div#videos {
 div#videos > video {
     background: black;
     width: 640px;
-    height: 100%;
     display: block;
     margin: 1em;
 }

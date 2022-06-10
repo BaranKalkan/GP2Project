@@ -204,7 +204,9 @@ function setChannelEvents(channel, channelNameForConsoleOutput) {
   channel.onmessage = function (event) {
       let message = event.data;
       console.log(channelNameForConsoleOutput, 'received a message:', message);
-      $('#messages').append(`<p class="message sender">${message}<span class="message-date">${Date.now()}</span></p>`);
+      const d = new Date();
+      let time = d.toLocaleTimeString();
+      $('#messages').append(`<p class="message sender">${message}<span class="message-date">${time}</span></p>`);
       
   };
 
@@ -218,7 +220,9 @@ function setChannelEvents(channel, channelNameForConsoleOutput) {
         if (event.keyCode == 13) {
           let message = $("#messageInputBox").val();
           messageChannel.send(message);
-          $('#messages').append(`<p class="message receiver">${message}<span class="message-date">${Date.now()}</span></p>`);
+          const d = new Date();
+          let time = d.toLocaleTimeString();
+          $('#messages').append(`<p class="message receiver">${message}<span class="message-date">${time}</span></p>`);
           $("#messageInputBox").val("");
         }
       });

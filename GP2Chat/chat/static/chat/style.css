@@ -54,6 +54,7 @@ body {
 }
 
 main {
+  max-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -313,6 +314,7 @@ main {
 }
 
 #messages {
+  overflow: auto;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -439,7 +441,6 @@ div#videos {
 div#videos > video {
   background: black;
   width: 640px;
-  height: 100%;
   display: block;
   margin: 1em;
 }
